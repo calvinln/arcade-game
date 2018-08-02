@@ -22,8 +22,6 @@ jobs:
           paths:
             - node_modules
           key: v2-dependencies-{{ checksum "package.json" }}
-      - run: ./node_modules/.bin/parcel build index.html
-      - run: npm test
       - persist_to_workspace:
           root: .
           paths:
