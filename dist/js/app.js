@@ -89,7 +89,7 @@ Player.prototype.handleInput = function(dir) {
   let y = this.y;
   switch (dir) {
     case 'left':
-      if (x - 100 > 0) {
+      if (x - 100 >= 0) {
         this.x -= 100;
       }
       break;
