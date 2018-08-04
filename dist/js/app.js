@@ -75,8 +75,8 @@ Player.prototype.reset = function() {
 };
 
 Player.prototype.update = function() {
-  if (player.y < 0) {
-    player.reset();
+  if (this.y < 0) {
+    this.reset();
   }
 };
 
