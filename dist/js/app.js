@@ -1,8 +1,8 @@
-var yOptions = [60, 140, 220];
-var speedOptions = [100, 140, 160, 200, 250];
+let yOptions = [60, 140, 220];
+let speedOptions = [100, 140, 160, 200, 250];
 
 // Enemies our player must avoid
-var Enemy = function() {
+let Enemy = function() {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
 
@@ -15,7 +15,7 @@ var Enemy = function() {
   this.speed = speedOptions[random(speedOptions)];
 };
 
-var random = function(arr) {
+let random = function(arr) {
   return Math.floor(Math.random() * arr.length);
 };
 
@@ -25,14 +25,12 @@ Enemy.prototype.update = function(dt) {
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
   // all computers.
-  var yPlayer = player.y;
-  var xPlayer = player.x;
-  var yEnemy = this.y;
-  var xEnemy = this.x;
+  let yPlayer = player.y;
+  let xPlayer = player.x;
   this.x += this.speed * dt;
 
-  if (yPlayer - yEnemy === 0) {
-    if (xPlayer - xEnemy > -60 && xPlayer - xEnemy <= 60) {
+  if (yPlayer - this.y === 0) {
+    if (xPlayer - this.x > -60 && xPlayer - this.x <= 60) {
       player.reset();
     }
   }
@@ -56,7 +54,7 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var playerOptions = [
+let playerOptions = [
   'images/char-boy.png',
   'images/char-cat-girl.png',
   'images/char-horn-girl.png',
@@ -64,7 +62,7 @@ var playerOptions = [
   'images/char-princess-girl.png'
 ];
 
-var Player = function() {
+let Player = function() {
   this.sprite = 'images/char-boy.png';
   this.x = 200;
   this.y = 380;
@@ -87,8 +85,8 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(dir) {
-  var x = this.x;
-  var y = this.y;
+  let x = this.x;
+  let y = this.y;
   switch (dir) {
     case 'left':
       if (x - 100 > 0) {
@@ -116,16 +114,16 @@ Player.prototype.handleInput = function(dir) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var enemyOne = new Enemy();
-var enemyTwo = new Enemy();
-var enemyThree = new Enemy();
-var allEnemies = [enemyOne, enemyTwo, enemyThree];
-var player = new Player();
+let allEnemies = [];
+for (let i = 0; i < 3; i++) {
+  allEnemies.push(new Enemy());
+}
+let player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-  var allowedKeys = {
+  let allowedKeys = {
     37: 'left',
     38: 'up',
     39: 'right',
